@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}
+
+Home
+{% endblock %}
+
+
+
+
+
+{% block content %}
+
+<h1>Your added tasks</h1>
+<div class="d-flex justify-content-center m-auto">
+{% for card in data %}
+<div class="card d-flex flex-wrap m-2" style="width: 18rem;">
+<div class="card-body">
+    <h5 class="card-title">{{ card.id}}</h5>
+    <h5 class="card-title">{{ card.Task_Title}}</h5>
+    <h6 class="card-subtitle mb-2 text-body-secondary">{{ card.Task_Description}}</h6>
+    <p class="card-text">{{ card.Task_Assign_Date}}</p>
+    <p class="card-text">
+        {% for Category in card.Task_Category.all%}
+        {{ Category }}
+        
+{% endfor %}
+    </p>
+    {% if card.is_completed == True%}
+    <a href="#" class="card-link btn btn-success ">Completed</a>
+    {% else %}
+    <a href="{%  url 'edittask' card.id %}" class="card-link btn btn-warning">Edit</a>
+    <a href="{%  url 'deletetask' card.id %}" class="card-link btn btn-danger">Delete</a>
+    {% endif %}
+</div>
+</div>
+
+{% endfor %}
+</div>
+{% endblock %}

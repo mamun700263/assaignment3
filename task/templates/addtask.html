@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{%  load crispy_forms_tags %}
+
+{% block title %}
+Add addtask
+{% endblock %}
+
+
+
+
+
+{% block content %}
+
+<h1>Well come to addtask page</h1>
+<form action="" method="post" class="w-50 m-auto">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{% endblock %}
